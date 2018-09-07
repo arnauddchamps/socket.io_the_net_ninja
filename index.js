@@ -15,4 +15,15 @@ const io = socket(server);
 // Etablir la connexion
 io.on("connection", function(socket) {
   console.log("made socket connection", socket.id);
+
+  //récuper les messages
+  socket.on("chat", function(data) {
+    //renvoyer les messages du serveur à tous les clients
+    io.sockets.emit("chat", data);
+  });
+
+  //
+  socket.on("typing", function(data) {
+    socket.broadcast.emit("typing", data);
+  });
 });
