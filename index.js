@@ -13,6 +13,6 @@ app.use(express.static("public"));
 const io = socket(server);
 
 // Etablir la connexion
-io.on("connection", function() {
-  console.log("made socket connection");
+io.on("connection", function(socket) {
+  console.log("made socket connection", socket.id);
 });
